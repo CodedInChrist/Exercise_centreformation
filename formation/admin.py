@@ -10,8 +10,8 @@ class SalleAdmin(admin.ModelAdmin):
     
     def save_model(self, request, obj, form, change):
         if not change:
-            obj.createur = request.user  # CORRIGÉ : 'createur'
-        obj.save()
+            obj.createur = request.user
+        super().save_model(request, obj, form, change)
 
 @admin.register(Formateur)
 class FormateurAdmin(admin.ModelAdmin):
@@ -33,7 +33,7 @@ class SessionAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
         if not change:
             obj.createur = request.user
-        obj.save()
+        super().save_model(request, obj, form, change)
     
     def get_queryset(self, request):
         qs = super().get_queryset(request)
